@@ -1,0 +1,20 @@
+<configuration>
+    <!-- ConsoleAppender를 정의합니다. -->
+    <property name="LOG_PATTERN"
+              value="[%d{yyyy-MM-dd HH:mm:ss}] %green([%thread]) %highlight([%-5level]) %boldWhite([%C.%M:%yellow(%L)]) %logger{30} - %msg%n" />
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+<!--    <logger name="org.apache.http" level="WARN">-->
+<!--        <appender-ref ref="HTTP_FILE_LOG" />-->
+<!--    </logger>-->
+
+    <!-- 로그 레벨과 출력을 정의합니다. -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>

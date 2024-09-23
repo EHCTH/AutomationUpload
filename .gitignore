@@ -1,0 +1,30 @@
+
+# User-specific files
+/.idea/
+*.iml
+*.ipr
+*.iws
+
+# Build directories
+out/
+build/
+
+# Gradle files
+/.gradle/
+/build/
+
+# Log files And env file
+*.log
+*.env
+
+# Miscellaneous
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+
+# OS generated files
+.DS_Store
+Thumbs.db

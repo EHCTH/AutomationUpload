@@ -202,20 +202,20 @@ public enum AlgorithmTag {
         this.key = key;
         this.value = value;
     }
-    private String getTag() {
+    public String getTag() {
         return value;
     }
     private boolean findKey(String key) {
         return this.key.equals(key);
     }
-    private static String unknownTag() {
-        return UNKNOWN.value;
+
+    private static AlgorithmTag unknownTag() {
+        return UNKNOWN;
     }
-    public static String findTag(String key) {
+    public static AlgorithmTag findTag(String key) {
         return Arrays.stream(TAGS)
                 .filter((tag) -> tag.findKey(key))
                 .findFirst()
-                .map(AlgorithmTag::getTag)
                 .orElseGet(AlgorithmTag::unknownTag);
     }
 }

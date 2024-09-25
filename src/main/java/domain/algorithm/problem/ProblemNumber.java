@@ -3,7 +3,7 @@ package domain.algorithm.problem;
 import java.util.Arrays;
 
 public class ProblemNumber {
-    String number;
+    private final String number;
     public String getNumber() {
         return number;
     }

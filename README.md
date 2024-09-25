@@ -6,8 +6,10 @@
 4. 추출한 문제들을 ProblemInfo class <DTD> 에 담는다
 5. 그 ProblemInfo 를 사용하여 깃헙에 push 한다
 
+### 애플리케이션 패키지에서 서로 다른 패키지간에 서비스로직을 통합시킨다   
 
-- [x] AlgorithmTag Extract
+
+
 
 ```
 com.project
@@ -38,3 +40,16 @@ com.project
       └── OutputView
 
 ```
+
+### 구현 및 미구현 목록
+- [x] User
+- [x] UserService
+- [x] Problem
+- [x] Options class required for the Problem
+- [x] ProblemDTO
+- [x] DotenvUtil
+- [x] LoginUrl
+- [ ] Extract For Jsoup
+- [ ] Using Selenium For Login
+- [ ] OutputView
+- [ ] Problem Service Logic For ProblemDTO Input

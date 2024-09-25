@@ -12,23 +12,28 @@
 ```
 com.project
   ├── domain
-  │   └── algorithm
-  │         ├── AlgorithmTag (enum) 
-  │         └── Problem
-  │              ├── Problem.java
-  │              ├── SourceCode.java
-  │              ├── Extension.java
-  │              ├── AlgorithmTag.java
-  │              └── ProblemNumber.java
+  │   ├── algorithm 
+  │   │      └── Problem
+  │   │           ├── Problem.java
+  │   │           ├── SourceCode.java
+  │   │           ├── Extension.java
+  │   │           ├── AlgorithmTag.java
+  │   │           └── ProblemNumber.java
+  │   └── user
+  │        └── User.java
   ├── application
   │   ├── dto
+  │   │    └── ProblemInfoDto.java
   │   └── service
+  │         └── UserService.java
   ├── infrastructure
   │   ├── parse
-  │   └── selenium
+  │   ├── selenium
+  │   └── url
+  │       └── Url.java
   ├── controller
   ├── util
-  │    └── DotenvUtil
+  │    └── DotenvUtil.java
   └── ui
       └── OutputView
 

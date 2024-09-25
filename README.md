@@ -15,7 +15,13 @@ com.project
   │   ├── algorithm
   │   │      ├── AlgorithmTag (enum) 
   │   │      ├── Problem
+  │   │      │     └── Problem.java
+  │   │      │       ├── SourceCode.java
+  │   │      │       ├── AlgorithmTag.java
+  │   │      │       └── ProblemNumber.java
   │   │      └── ProblemInfo (DTO)
+  │   ├── repository
+  │   │      └── ProblemRepository.java
   │   └── service
   ├── application
   │   └── service

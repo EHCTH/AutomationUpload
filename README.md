@@ -12,19 +12,16 @@
 ```
 com.project
   ├── domain
-  │   ├── algorithm
-  │   │      ├── AlgorithmTag (enum) 
-  │   │      ├── Problem
-  │   │      │     └── Problem.java
-  │   │      │       ├── SourceCode.java
-  │   │      │       ├── Extension.java
-  │   │      │       ├── AlgorithmTag.java
-  │   │      │       └── ProblemNumber.java
-  │   │      └── ProblemInfo (DTO)
-  │   ├── repository
-  │   │      └── ProblemRepository.java
-  │   └── service
+  │   └── algorithm
+  │         ├── AlgorithmTag (enum) 
+  │         └── Problem
+  │              ├── Problem.java
+  │              ├── SourceCode.java
+  │              ├── Extension.java
+  │              ├── AlgorithmTag.java
+  │              └── ProblemNumber.java
   ├── application
+  │   ├── dto
   │   └── service
   ├── infrastructure
   │   ├── parse

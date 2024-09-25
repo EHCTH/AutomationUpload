@@ -12,9 +12,8 @@ public class ProblemNumberTest {
     }
     @Test
     public void absentNumberTest() {
-        ProblemNumber problemNumber = new ProblemNumber("");
-        String number = problemNumber.getNumber();
-        String expectedNumber = String.valueOf(Integer.MAX_VALUE);
-        assertThat(number).isEqualTo(expectedNumber);
+        assertThatThrownBy(() -> new ProblemNumber(""))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 없는 번호입니다");
     }
 }

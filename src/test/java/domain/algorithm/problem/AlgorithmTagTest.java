@@ -1,5 +1,6 @@
-package domain.algorithm;
+package domain.algorithm.problem;
 
+import domain.algorithm.problem.AlgorithmTag;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 

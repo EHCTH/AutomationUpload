@@ -66,4 +66,11 @@ public class Problem {
             return new Problem(this);
         }
     }
+    @Override
+    public String toString() {
+        return String.format(
+                "FileName: %s\nSourceCode: %s\nAlgorithmTag: %s\n"
+                ,getFileName(), getSourceCode(), getTag()
+        );
+    }
 }

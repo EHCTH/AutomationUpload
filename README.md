@@ -17,6 +17,7 @@ com.project
   │   │      ├── Problem
   │   │      │     └── Problem.java
   │   │      │       ├── SourceCode.java
+  │   │      │       ├── Extension.java
   │   │      │       ├── AlgorithmTag.java
   │   │      │       └── ProblemNumber.java
   │   │      └── ProblemInfo (DTO)

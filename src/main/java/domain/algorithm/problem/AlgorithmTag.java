@@ -1,4 +1,4 @@
-package domain.algorithm;
+package domain.algorithm.problem;
 
 import java.util.Arrays;
 

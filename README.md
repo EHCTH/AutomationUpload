@@ -11,6 +11,7 @@
 
 
 
+
 ```
 com.project
   ├── domain
@@ -27,10 +28,14 @@ com.project
   │   ├── dto
   │   │    └── ProblemInfoDto.java
   │   └── service
+  │         ├── login
+  │         │     └── LoginServiceInterface
   │         └── UserService.java
   ├── infrastructure
   │   ├── parse
+  │   │      └── JsoupParseService.java
   │   ├── selenium
+  │   │      └── SeleniumLoginService.java
   │   └── url
   │       └── Url.java
   ├── controller
@@ -53,3 +58,4 @@ com.project
 - [ ] Using Selenium For Login
 - [ ] OutputView
 - [ ] Problem Service Logic For ProblemDTO Input
+- [ ] Dto use push for github

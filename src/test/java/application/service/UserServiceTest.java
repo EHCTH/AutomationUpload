@@ -18,7 +18,8 @@ public class UserServiceTest {
     }
     @Test
     public void createUserTest() {
-        User user = UserService.createUser();
+        UserService userService = new UserService();
+        User user = userService.createUser();
         String id = user.getId();
         String pass = user.getPass();
         assertThat(id).isEqualTo(expectedId);

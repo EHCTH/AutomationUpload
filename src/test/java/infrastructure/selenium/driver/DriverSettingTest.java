@@ -1,5 +1,6 @@
-package infrastructure.selenium;
+package infrastructure.selenium.driver;
 
+import infrastructure.selenium.Driver.DriverSetting;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -20,7 +21,7 @@ public class DriverSettingTest {
     @Test
     public void driverShouldNavigateToUrl() {
         String testUrl = "https://example.com";
-        driverSetting.get(testUrl);
+        WebDriver driver = driverSetting.getDriver();
         Mockito.verify(driver).get(testUrl);
     }
 }

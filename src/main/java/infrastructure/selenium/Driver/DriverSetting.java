@@ -10,10 +10,7 @@ public class DriverSetting {
     public DriverSetting(WebDriver driver) {
         this.driver = driver;
     }
-    public WebDriver getDriver() {
-        return driver;
-    }
-    public WaitDriver ofWaitDriverByDurationOfTenSecond() {
-        return new WaitDriver(driver, Duration.ofSeconds(10));
+    public Driver getDriver() {
+        return new Driver(driver);
     }
 }

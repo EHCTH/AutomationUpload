@@ -1,4 +1,4 @@
-package infrastructure.selenium;
+package infrastructure.selenium.Driver;
 
 import org.openqa.selenium.WebDriver;
 
@@ -10,8 +10,8 @@ public class DriverSetting {
     public DriverSetting(WebDriver driver) {
         this.driver = driver;
     }
-    public void get(String url) {
-        driver.get(url);
+    public WebDriver getDriver() {
+        return driver;
     }
     public WaitDriver ofWaitDriverByDurationOfTenSecond() {
         return new WaitDriver(driver, Duration.ofSeconds(10));

@@ -37,9 +37,9 @@ public class ServiceTask implements TaskManger {
             String bojUrl = Url.getLoginUrl();
             driver.get(bojUrl);
             login();
+            Thread.sleep(25000);
             enterMyPage();
             enterMysSolvedPage();
-            Thread.sleep(15000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -65,10 +65,5 @@ public class ServiceTask implements TaskManger {
     public void enterMysSolvedPage() {
         profileService.enterMySolvePage(driver, waitDriver);
         logger.info("나의 맞은 문제 클릭 완료");
-    }
-
-    public static void main(String[] args) {
-        TaskManger serviceTask = ServiceTaskFactory.createServiceTask(new ChromeDriver());
-        serviceTask.start();
     }
 }

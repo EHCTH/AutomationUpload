@@ -2,6 +2,8 @@ package application.service;
 
 import application.service.login.LoginService;
 import application.service.login.LoginServiceManage;
+import application.service.profile.ProfileManage;
+import application.service.profile.ProfileService;
 import infrastructure.selenium.Driver.DriverController;
 import infrastructure.selenium.Driver.DriverSetting;
 import infrastructure.selenium.Driver.WaitDriver;
@@ -20,10 +22,12 @@ public class ServiceTaskFactory {
         );
         DriverController driver = driverSetting.getDriver();
         WaitDriverController waitDriver = new WaitDriver(driver.getWebDriver(), Duration.ofSeconds(10));
+        ProfileService profileService = new ProfileService();
         return new ServiceTask(
                 loginService,
                 driver,
-                waitDriver
+                waitDriver,
+                profileService
         );
     }
 }

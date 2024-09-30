@@ -6,7 +6,8 @@ public enum BySelector {
     PASS("input[name='login_password']"),
     LOGIN_SUBMIT_BUTTON("#submit_button"),
     USER_PAGE("a.username"),
-    USER_SOLVED_PAGE("#statics > tbody > tr:nth-child(2) > td > a");
+    USER_SOLVED_PAGE("#statics > tbody > tr:nth-child(2) > td > a"),
+    USER_SOLVED_PROBLEM_PAGE("ul.pagination a");
 
     private final String selector;
     BySelector(String selector) {
@@ -29,5 +30,8 @@ public enum BySelector {
     }
     public static String getUserSolvedPage() {
         return USER_SOLVED_PAGE.selector;
+    }
+    public static String getSolvedProblemPage() {
+        return USER_SOLVED_PROBLEM_PAGE.selector;
     }
 }

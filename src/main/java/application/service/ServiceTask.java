@@ -2,6 +2,7 @@ package application.service;
 
 import application.service.login.LoginServiceManage;
 import application.service.profile.ProfileManage;
+import domain.cookie.SeleniumCookie;
 import infrastructure.selenium.Driver.*;
 import infrastructure.url.Url;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -38,6 +39,7 @@ public class ServiceTask implements TaskManger {
             driver.get(bojUrl);
             login();
             Thread.sleep(25000);
+            SeleniumCookie cookies = new SeleniumCookie(driver.getCookie());
             enterMyPage();
             enterMysSolvedPage();
         } catch (InterruptedException e) {

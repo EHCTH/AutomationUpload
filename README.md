@@ -13,36 +13,67 @@
 
 
 ```
-com.project
-  ├── domain
-  │   ├── algorithm 
-  │   │      └── Problem
-  │   │           ├── Problem.java
-  │   │           ├── SourceCode.java
-  │   │           ├── Extension.java
-  │   │           ├── AlgorithmTag.java
-  │   │           └── ProblemNumber.java
-  │   └── user
-  │        └── User.java
-  ├── application
-  │   ├── dto
-  │   │    └── ProblemInfoDto.java
-  │   └── service
-  │         ├── login
-  │         │     └── LoginServiceInterface
-  │         └── UserService.java
-  ├── infrastructure
-  │   ├── parse
-  │   │      └── JsoupParseService.java
-  │   ├── selenium
-  │   │      └── SeleniumLoginService.java
-  │   └── url
-  │       └── Url.java
-  ├── controller
-  ├── util
-  │    └── DotenvUtil.java
-  └── ui
-      └── OutputView
+└── src
+    ├── main
+    │   ├── java
+    │   │   ├── LoggerTest.java
+    │   │   ├── application
+    │   │   │   ├── Application.java
+    │   │   │   ├── dto
+    │   │   │   │   ├── PageElements.java
+    │   │   │   │   └── ProblemInfoDto.java
+    │   │   │   └── service
+    │   │   │       ├── ServiceTask.java
+    │   │   │       ├── ServiceTaskFactory.java
+    │   │   │       ├── TaskManger.java
+    │   │   │       ├── UserService.java
+    │   │   │       ├── extract
+    │   │   │       │   └── ExtractPageElementsFactory.java
+    │   │   │       ├── login
+    │   │   │       │   ├── LoginService.java
+    │   │   │       │   └── LoginServiceManage.java
+    │   │   │       └── profile
+    │   │   │           ├── ProfileManage.java
+    │   │   │           └── ProfileService.java
+    │   │   ├── controller
+    │   │   ├── domain
+    │   │   │   ├── algorithm
+    │   │   │   │   └── problem
+    │   │   │   │       ├── AlgorithmTag.java
+    │   │   │   │       ├── Extension.java
+    │   │   │   │       ├── Problem.java
+    │   │   │   │       ├── ProblemNumber.java
+    │   │   │   │       └── SourceCode.java
+    │   │   │   ├── cookie
+    │   │   │   │   └── SeleniumCookie.java
+    │   │   │   └── user
+    │   │   │       └── User.java
+    │   │   ├── infrastructure
+    │   │   │   ├── parse
+    │   │   │   │   ├── CookieManager.java
+    │   │   │   │   ├── PageLinks.java
+    │   │   │   │   ├── Parse.java
+    │   │   │   │   ├── ProblemLinkExtractor.java
+    │   │   │   │   └── ProblemSourceCodeExtractor.java
+    │   │   │   ├── selenium
+    │   │   │   │   ├── Driver
+    │   │   │   │   │   ├── Driver.java
+    │   │   │   │   │   ├── DriverController.java
+    │   │   │   │   │   ├── DriverSetting.java
+    │   │   │   │   │   ├── WaitDriver.java
+    │   │   │   │   │   └── WaitDriverController.java
+    │   │   │   │   └── css
+    │   │   │   │       └── BySelector.java
+    │   │   │   └── url
+    │   │   │       └── Url.java
+    │   │   ├── ui
+    │   │   │   └── OutputView.java
+    │   │   └── util
+    │   │       └── DotenvUtil.java
+    │   └── resources
+    │       └── logback.xml
+    └── test
+
 
 ```
 
@@ -54,8 +85,8 @@ com.project
 - [x] ProblemDTO
 - [x] DotenvUtil
 - [x] LoginUrl
+- [x] Using Selenium For Login
 - [ ] Extract For Jsoup
-- [ ] Using Selenium For Login
 - [ ] OutputView
 - [ ] Problem Service Logic For ProblemDTO Input
 - [ ] Dto use push for github

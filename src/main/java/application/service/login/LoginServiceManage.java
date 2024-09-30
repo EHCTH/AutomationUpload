@@ -1,8 +1,9 @@
 package application.service.login;
 
-import domain.user.User;
+import infrastructure.selenium.Driver.WaitDriverController;
+import infrastructure.selenium.Driver.DriverController;
 
-public interface LoginServiceInterface {
-    void login(User user);
+public interface LoginServiceManage {
+    void login(DriverController driver, WaitDriverController waitDriver);
 
 }

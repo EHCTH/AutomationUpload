@@ -1,7 +1,12 @@
 package infrastructure.selenium.Driver;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
+import java.util.Set;
 
 
 public class Driver implements DriverController {
@@ -22,6 +27,17 @@ public class Driver implements DriverController {
     public void quit() {
         driver.quit();
     }
+
+    @Override
+    public Set<Cookie> getCookie() {
+        return driver.manage().getCookies();
+    }
+
+    @Override
+    public List<WebElement> findElements(By by) {
+        return driver.findElements(by);
+    }
+
     @Override
     public void writeText(By by, String text) {
         driver.findElement(by).sendKeys(text);

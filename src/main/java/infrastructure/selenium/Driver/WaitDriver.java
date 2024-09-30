@@ -14,13 +14,20 @@ public class WaitDriver implements WaitDriverController {
     }
     public void visibilityOfElementLocated(String selector) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.cssSelector(selector)
-        ));
+                By.cssSelector(selector))
+        );
     }
     public void elementToBeClickable(String selector) {
         wait.until(ExpectedConditions.elementToBeClickable(
-                By.cssSelector(selector)
-        ));
+                By.cssSelector(selector))
+        );
+    }
+
+    @Override
+    public void visibilityOfAllElementsLocatedBy(String selector) {
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
+                By.cssSelector(selector))
+        );
     }
 
 }

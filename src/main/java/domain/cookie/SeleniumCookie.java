@@ -13,4 +13,8 @@ public class SeleniumCookie {
     public Set<Cookie> getCookies() {
         return cookies;
     }
+    @Override
+    public String toString() {
+        return cookies.toString();
+    }
 }

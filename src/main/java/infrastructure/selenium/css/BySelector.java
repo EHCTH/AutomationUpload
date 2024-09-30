@@ -3,9 +3,10 @@ package infrastructure.selenium.css;
 public enum BySelector {
     // TODO 여기에 key = type, value = 형식으로 넣어야겠다
     ID("input[name='login_user_id']"),
+    PASS("input[name='login_password']"),
     LOGIN_SUBMIT_BUTTON("#submit_button"),
     USER_PAGE("a.username"),
-    PASS("input[name='login_password']");
+    USER_SOLVED_PAGE("#statics > tbody > tr:nth-child(2) > td > a");
 
     private final String selector;
     BySelector(String selector) {
@@ -23,19 +24,10 @@ public enum BySelector {
     public static String getLoginSubmitButton() {
         return LOGIN_SUBMIT_BUTTON.selector;
     }
+    public static String getUserPage() {
+        return USER_PAGE.selector;
+    }
+    public static String getUserSolvedPage() {
+        return USER_SOLVED_PAGE.selector;
+    }
 }
-/*
-    void writeId(User user) {
-        WebElement loginUserId = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.name("login_user_id")));
-        loginUserId.sendKeys(user.getUserId());
-        logger.info("Your ID : {}", user.getUserId());
-    }
-    void writePass(User user) {
-        WebElement loginPassword = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.name("login_password")));
-        loginPassword.sendKeys(user.getUserPass());
-        logger.info("Your PASS : {}", user.getUserPass());
-
-    }
- */

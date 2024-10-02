@@ -9,7 +9,7 @@ public class ProblemNumber {
     }
     public ProblemNumber(String number) {
         validateBlank(number);
-        this.number = number;
+        this.number = number.substring(number.lastIndexOf("/"));;
     }
 
     private void validateBlank(String number) {

@@ -37,8 +37,8 @@ public class LinkExtractor implements ProblemLinkExtractionManage {
         List<String> hrefModelPage = new PageLinks(pages).getHrefModel();
         try {
             for (String url : hrefModelPage) {
-                parse.connectAndInitCookies(url, cookie);
-                List<String> problemLink = extractProblemProfile();
+                Connection connection = parse.initConnection(url);
+                List<String> problemLink = extractProblemProfile(connection, cookie);
                 problemInfo.addAll(problemLink);
             }
         } catch (IOException e) {
@@ -48,8 +48,8 @@ public class LinkExtractor implements ProblemLinkExtractionManage {
         return transformLink(problemInfo);
     }
     @Override
-    public List<String> extractProblemProfile() throws IOException {
-        Connection.Response response = parse.execute();
+    public List<String> extractProblemProfile(Connection connection, SeleniumCookie cookies) throws IOException {
+        Connection.Response response = parse.executeWithCookies(connection, cookies);
         Document document = Jsoup.parse(response.body());
         Elements elements = document.select(BySelector.getProblemSet());
         return elements.stream()

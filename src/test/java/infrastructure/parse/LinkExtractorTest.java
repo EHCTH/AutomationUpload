@@ -1,5 +1,6 @@
 package infrastructure.parse;
 
+import domain.cookie.SeleniumCookie;
 import infrastructure.selenium.Driver.DriverController;
 import infrastructure.selenium.Driver.WaitDriverController;
 import infrastructure.selenium.css.BySelector;
@@ -8,8 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockedStatic;
 import org.mockito.MockitoAnnotations;
+import org.mockito.MockedStatic;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,6 +30,9 @@ public class LinkExtractorTest {
     @Mock
     private Parse parse;
 
+    @Mock
+    private SeleniumCookie cookies;
+
     @InjectMocks
     private LinkExtractor linkExtractor;
 
@@ -41,56 +45,46 @@ public class LinkExtractorTest {
     @Test
     void testExtractProblemProfile() throws IOException {
         // Given
+        Connection mockConnection = mock(Connection.class);
         Connection.Response mockResponse = mock(Connection.Response.class);
-        when(parse.execute()).thenReturn(mockResponse);  // parse.execute()의 결과를 Mocking
+        when(parse.executeWithCookies(mockConnection, cookies)).thenReturn(mockResponse);  // parse.executeWithCookies() 결과를 Mocking
         when(mockResponse.body()).thenReturn(
                 "<table class=\"table table-striped table-bordered clickable-table\" id=\"problemset\">" +
                         "<thead><tr>" +
-                        "<th style=\"width:10%\">문제</th><th style=\"width:50%\">문제 제목</th>" +
-                        "<th style=\"width:20%\">정보</th><th style=\"width:7%\">맞힌 사람</th>" +
-                        "<th style=\"width:5%\">제출</th><th style=\"width:8%\">정답 비율</th>" +
+                        "<th>문제</th><th>문제 제목</th>" +
                         "</tr></thead>" +
                         "<tbody>" +
-                        "<tr><td class=\"list_problem_id\">1000</td><td><a href=\"/problem/1000\" class=\"result-ac\">A+B</a></td>" +
-                        "<td><span class=\"problem-label problem-label-ac\">성공</span>" +
-                        "<span class=\"problem-label problem-label-multilang\">다국어</span></td>" +
-                        "<td><a href=\"/status?from_problem=1&amp;problem_id=1000&amp;result_id=4\">313207</a></td>" +
-                        "<td><a href=\"/status?from_problem=1&amp;problem_id=1000\">1167122</a></td>" +
-                        "<td>38.783%</td></tr>" +
+                        "<tr><td>1000</td><td><a href=\"/problem/1000\">A+B</a></td></tr>" +
+                        "<tr><td>1001</td><td><a href=\"/problem/1001\">A-B</a></td></tr>" +
                         "</tbody></table>"
         );
+
         try (MockedStatic<BySelector> bySelectorMock = mockStatic(BySelector.class)) {
             bySelectorMock.when(BySelector::getProblemSet).thenReturn("#problemset > tbody > tr > td:nth-child(2) > a");
-            List<String> result = linkExtractor.extractProblemProfile();
-            assertEquals(1, result.size());
+
+            // When
+            List<String> result = linkExtractor.extractProblemProfile(mockConnection, cookies);
+
+            // Then
+            assertEquals(2, result.size());
             assertEquals("/problem/1000", result.get(0));
+            assertEquals("/problem/1001", result.get(1));
         }
     }
+
     @Test
-    void transformLinkTest() {
+    void testTransformLink() {
+        // Given
+        List<String> problemInfo = List.of("/problem/1000", "/problem/1001");
+
+        // When
+        List<String> result = linkExtractor.transformLink(problemInfo);
+
+        // Then
         List<String> expected = List.of(
                 "https://www.acmicpc.net/problem/1000",
-                "https://www.acmicpc.net/problem/1001",
-                "https://www.acmicpc.net/problem/1008",
-                "https://www.acmicpc.net/problem/1546",
-                "https://www.acmicpc.net/problem/2557",
-                "https://www.acmicpc.net/problem/2743",
-                "https://www.acmicpc.net/problem/10093",
-                "https://www.acmicpc.net/problem/10998",
-                "https://www.acmicpc.net/problem/30017"
+                "https://www.acmicpc.net/problem/1001"
         );
-        List<String> problemInfo = List.of(
-                "/problem/1000",
-                "/problem/1001",
-                "/problem/1008",
-                "/problem/1546",
-                "/problem/2557",
-                "/problem/2743",
-                "/problem/10093",
-                "/problem/10998",
-                "/problem/30017");
-        List<String> actual = linkExtractor.transformLink(problemInfo);
-        assertThat(actual).isEqualTo(expected);
+        assertThat(result).isEqualTo(expected);
     }
 }
-

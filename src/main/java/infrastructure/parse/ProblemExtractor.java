@@ -42,8 +42,8 @@ public class ProblemExtractor implements ExtractorManager {
 
     @Override
     public String extractorSourceCode(String link, SeleniumCookie cookies) throws IOException {
-        parse.connectAndInitCookies(link, cookies);;
-        Connection.Response response = parse.execute();
+        Connection connection = parse.initConnection(link);
+        Connection.Response response = parse.executeWithCookies(connection, cookies);
         Document document = Jsoup.parse(response.body());
         Element element = document.select(BySelector.getSourceCode()).first();
         return element.text();

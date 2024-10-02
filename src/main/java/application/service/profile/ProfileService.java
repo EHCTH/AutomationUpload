@@ -1,34 +1,39 @@
 package application.service.profile;
 
-import domain.algorithm.problem.AlgorithmTag;
 import infrastructure.selenium.Driver.DriverController;
 import infrastructure.selenium.Driver.WaitDriverController;
 import infrastructure.selenium.css.BySelector;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import javax.swing.text.Element;
-import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ProfileService implements ProfileManage {
+    private final DriverController driver;
+    private final WaitDriverController waitDriver;
+    private Logger logger = LoggerFactory.getLogger(ProfileService.class);
+    public ProfileService(DriverController driver, WaitDriverController waitDriver) {
+        this.driver = driver;
+        this.waitDriver = waitDriver;
+    }
     @Override
-    public void enterMyPage(DriverController driver, WaitDriverController waitDriver) {
+    public void enterMyPage() {
         String myPage = BySelector.getUserPage();
         waitDriver.elementToBeClickable(myPage);
         driver.clickButton(By.cssSelector(myPage));
+        logger.info("나의 페이지 클릭 완료");
     }
 
     @Override
-    public void enterMySolvePage(DriverController driver, WaitDriverController waitDriver) {
+    public void enterMySolvePage() {
         String userSolvedPage = BySelector.getUserSolvedPage();
         waitDriver.elementToBeClickable(userSolvedPage);
         driver.clickButton(By.cssSelector(userSolvedPage));
-
+        logger.info("나의 맞은 문제 클릭 완료");
     }
 
     @Override
-    public void enterMySolveSubmissionPage(DriverController driver, WaitDriverController waitDriver) {
+    public void enterMySolveSubmissionPage() {
         String submit = BySelector.getMySubmit();
         waitDriver.elementToBeClickable(submit);
         driver.clickButton(By.cssSelector(submit));
@@ -36,7 +41,12 @@ public class ProfileService implements ProfileManage {
     }
 
     @Override
-    public String findAlgorithmTag(DriverController driver, WaitDriverController waitDriver) {
+    public void enterProblem(String url) {
+        driver.get(url);
+    }
+
+    @Override
+    public String findAlgorithmTag() {
         String algorithmTag = BySelector.getAlgorithmTag();
         waitDriver.visibilityOfElementLocated(algorithmTag);
         WebElement element = driver.findElement(By.cssSelector(algorithmTag));
@@ -45,7 +55,7 @@ public class ProfileService implements ProfileManage {
     }
 
     @Override
-    public WebElement findFirstSolveElement(DriverController driver, WaitDriverController waitDriver) {
+    public WebElement findFirstSolveElement() {
         String statusTable = BySelector.getStatusTable();
         waitDriver.visibilityOfAllElementsLocatedBy(statusTable);
         return driver.findFirstSolveElement(By.cssSelector(statusTable));

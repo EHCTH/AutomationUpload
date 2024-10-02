@@ -1,29 +1,29 @@
 package infrastructure.parse;
 
+import application.dto.ProblemInfoDto;
+import application.service.profile.ProfileManage;
+import domain.algorithm.problem.Problem;
+import domain.cookie.SeleniumCookie;
 import infrastructure.selenium.css.BySelector;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 public class ProblemExtractor implements ExtractorManager {
-    @Override
-    public List<String> extractProblemProfile(Parse parse) throws IOException {
-        Connection.Response response = parse.execute();
-        Document document = Jsoup.parse(response.body());
-        Elements elements = document.select(BySelector.getProblemSet());
-        return elements.stream()
-                .map((link) -> link.attr("href"))
-                .collect(toList());
+    private final Parse parse;
+    private final Logger logger = LoggerFactory.getLogger(ProblemExtractor.class);
+    int cnt = 0;
+    public ProblemExtractor(Parse parse) {
+        this.parse = parse;
     }
 
     @Override
@@ -41,24 +41,49 @@ public class ProblemExtractor implements ExtractorManager {
 
 
     @Override
-    public List<String> extractProblemLink(List<String> problemInfo) {
-        return problemInfo.stream()
-                .map((problemLink) -> "https://www.acmicpc.net" + problemLink)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public String extractorSourceCode(Parse parse) throws IOException {
+    public String extractorSourceCode(String link, SeleniumCookie cookies) throws IOException {
+        parse.connectAndInitCookies(link, cookies);;
         Connection.Response response = parse.execute();
         Document document = Jsoup.parse(response.body());
         Element element = document.select(BySelector.getSourceCode()).first();
         return element.text();
     }
 
+
     @Override
     public String extractProblemNumber(WebElement element) {
         String number = BySelector.getProblemNumber();
         return element.findElement(By.cssSelector(number)).getAttribute("href");
-
     }
+    @Override
+    public ProblemInfoDto extractProblemInfoDto(
+                                                SeleniumCookie cookies,
+                                                ProfileManage profileService,
+                                                List<String> problemInfo) throws IOException {
+        List<Problem> ret = new ArrayList<>();
+        for (String url : problemInfo) {
+            profileService.enterProblem(url);
+            String algorithmTag = profileService.findAlgorithmTag();
+
+            profileService.enterMySolveSubmissionPage();
+
+            WebElement firstSolveProblemElement = profileService.findFirstSolveElement();
+            String problemNumber = extractProblemNumber(firstSolveProblemElement);
+            String extension = extractProblemExtension(firstSolveProblemElement);
+            String link = extractProblemSourceCode(firstSolveProblemElement);
+            String sourceCode = extractorSourceCode(link, cookies);
+
+            Problem problem = new Problem.Builder()
+                    .problemNumber(problemNumber)
+                    .algorithmTag(algorithmTag)
+                    .extension(extension)
+                    .sourceCode(sourceCode)
+                    .build();
+            ret.add(problem);
+            logger.info("success file count {}. codeSize : {}", ++cnt, sourceCode.length());
+        }
+        return new ProblemInfoDto(ret);
+    }
+
+
 }

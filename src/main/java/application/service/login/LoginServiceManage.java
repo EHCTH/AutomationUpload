@@ -1,9 +1,11 @@
 package application.service.login;
 
-import infrastructure.selenium.Driver.WaitDriverController;
-import infrastructure.selenium.Driver.DriverController;
+
+import domain.cookie.SeleniumCookie;
 
 public interface LoginServiceManage {
-    void login(DriverController driver, WaitDriverController waitDriver);
+    void login();
+    SeleniumCookie extractCookies();
+    void logout();
 
 }

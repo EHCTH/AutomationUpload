@@ -1,5 +1,6 @@
 package infrastructure.selenium.Driver;
 
+import infrastructure.selenium.css.BySelector;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
@@ -39,6 +40,24 @@ public class Driver implements DriverController {
     }
 
     @Override
+    public WebElement findElement(By by) {
+        return driver.findElement(by);
+    }
+
+    @Override
+    public WebElement findFirstSolveElement(By by) {
+        List<WebElement> elements = driver.findElements(by);
+        String result = BySelector.getResultTable();
+        return elements.stream()
+                .filter((element) -> {
+                    String text = element.findElement(By.cssSelector(result)).getText();
+                    return isAnswer(text);
+                })
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 정답이없습니다"));
+    }
+
+    @Override
     public void writeText(By by, String text) {
         driver.findElement(by).sendKeys(text);
     }
@@ -46,5 +65,8 @@ public class Driver implements DriverController {
     @Override
     public void clickButton(By by) {
         driver.findElement(by).click();
+    }
+    public boolean isAnswer(String text) {
+        return text.contains("맞았습니다") || text.contains("100");
     }
 }

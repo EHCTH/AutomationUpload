@@ -16,4 +16,6 @@ public interface DriverController {
     void quit();
     Set<Cookie> getCookie();
     List<WebElement> findElements(By by);
+    WebElement findElement(By by);
+    WebElement findFirstSolveElement(By by);
 }

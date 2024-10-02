@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 public class ExtractPageElementsFactory {
     public static PageElements extractPage(DriverController driver, WaitDriverController waitDriver) {
         String page = BySelector.getSolvedProblemPage();
-        waitDriver.visibilityOfElementLocated(page);
+        waitDriver.visibilityOfAllElementsLocatedBy(page);
         return new PageElements(driver.findElements(By.cssSelector(page)));
     }
 }

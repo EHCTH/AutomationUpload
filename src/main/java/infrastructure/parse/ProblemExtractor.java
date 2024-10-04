@@ -3,6 +3,7 @@ package infrastructure.parse;
 import application.dto.ProblemInfoDto;
 import application.service.profile.ProfileManage;
 import domain.algorithm.problem.Problem;
+import domain.algorithm.problem.ProblemFile;
 import domain.cookie.SeleniumCookie;
 import infrastructure.selenium.css.BySelector;
 import org.jsoup.Connection;
@@ -60,7 +61,7 @@ public class ProblemExtractor implements ExtractorManager {
                                                 SeleniumCookie cookies,
                                                 ProfileManage profileService,
                                                 List<String> problemInfo) throws IOException {
-        List<Problem> ret = new ArrayList<>();
+        List<ProblemFile> ret = new ArrayList<>();
         for (String url : problemInfo) {
             profileService.enterProblem(url);
             String algorithmTag = profileService.findAlgorithmTag();
@@ -73,16 +74,20 @@ public class ProblemExtractor implements ExtractorManager {
             String link = extractProblemSourceCode(firstSolveProblemElement);
             String sourceCode = extractorSourceCode(link, cookies);
 
-            Problem problem = new Problem.Builder()
+            ProblemFile problem = new Problem.Builder()
                     .problemNumber(problemNumber)
                     .algorithmTag(algorithmTag)
                     .extension(extension)
                     .sourceCode(sourceCode)
                     .build();
             ret.add(problem);
-            logger.info("success file count {}. codeSize : {}", ++cnt, sourceCode.length());
+            logger.info("success file count {},sourceCodeExtract={}", ++cnt,
+                    sourceCodeExtractValidate(sourceCode));
         }
         return new ProblemInfoDto(ret);
+    }
+    private String sourceCodeExtractValidate(String sourceCode) {
+        return sourceCode.length() == 0 ? "fail" : "success";
     }
 
 

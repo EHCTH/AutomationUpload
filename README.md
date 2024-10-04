@@ -86,5 +86,6 @@
 - [x] Extract For Jsoup
 - [ ] OutputView
 - [x] Problem Service Logic For ProblemDTO Input
-- [ ] Dto use push for github
+- [x] Dto use push for github
+- [ ] Github upload refactor
 - [ ] logging

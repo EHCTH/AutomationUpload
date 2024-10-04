@@ -1,6 +1,5 @@
 package domain.algorithm.problem;
 
-import java.util.Arrays;
 
 public class ProblemNumber {
     private final String number;
@@ -9,7 +8,8 @@ public class ProblemNumber {
     }
     public ProblemNumber(String number) {
         validateBlank(number);
-        this.number = number.substring(number.lastIndexOf("/"));;
+        int idx = number.lastIndexOf("/") + 1;
+        this.number = number.substring(idx);
     }
 
     private void validateBlank(String number) {

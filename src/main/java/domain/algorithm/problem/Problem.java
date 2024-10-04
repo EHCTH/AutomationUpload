@@ -1,6 +1,6 @@
 package domain.algorithm.problem;
 
-public class Problem {
+public class Problem implements ProblemFile {
     private final ProblemNumber problemNumber;
     private final SourceCode sourceCode;
     private final AlgorithmTag algorithmTag;
@@ -12,14 +12,17 @@ public class Problem {
         this.algorithmTag = builder.algorithmTag;
         this.extension = builder.extension;
     }
+    @Override
     public String getSourceCode() {
         return sourceCode.getSourceCode();
     }
 
+    @Override
     public String getNumber() {
         return problemNumber.getNumber();
     }
 
+    @Override
     public String getTag() {
         return algorithmTag.getTag();
     }
@@ -28,8 +31,18 @@ public class Problem {
         return extension.getExtension();
     }
 
+    @Override
     public String getFileName() {
         return getNumber() + "." + getExtension();
+    }
+    @Override
+    public String getPath() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("/")
+                .append(getTag())
+                .append("/")
+                .append(getFileName());
+        return sb.toString();
     }
 
 

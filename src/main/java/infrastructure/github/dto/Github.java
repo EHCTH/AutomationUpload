@@ -1,8 +1,6 @@
-package infrastructure.github.domain;
+package infrastructure.github.dto;
 
 import io.github.cdimascio.dotenv.Dotenv;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class Github {
     private static final Dotenv config = Dotenv.configure().load();

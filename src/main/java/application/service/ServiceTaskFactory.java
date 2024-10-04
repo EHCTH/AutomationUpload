@@ -3,6 +3,9 @@ package application.service;
 import application.service.login.LoginService;
 import application.service.login.LoginServiceManage;
 import application.service.profile.ProfileService;
+import infrastructure.github.GithubUploader;
+import infrastructure.github.UploadManage;
+import infrastructure.github.dto.Github;
 import infrastructure.parse.CookieManager;
 import infrastructure.parse.LinkExtractor;
 import infrastructure.parse.Parse;
@@ -30,11 +33,13 @@ public class ServiceTaskFactory {
         ProfileService profileService = new ProfileService(driver, waitDriver);
         LinkExtractor linkExtractor = new LinkExtractor(driver, waitDriver, parse);
         ProblemExtractor problemExtractor = new ProblemExtractor(parse);
+        UploadManage githubUpload = new GithubUploader(new Github());
         return new ServiceTask(
                 loginService,
                 profileService,
                 problemExtractor,
-                linkExtractor
+                linkExtractor,
+                githubUpload
         );
     }
 }

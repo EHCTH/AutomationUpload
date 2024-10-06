@@ -1,4 +1,4 @@
-package infrastructure.parse;
+package infrastructure.parse.domain;
 
 import application.dto.PageElements;
 

@@ -1,6 +1,7 @@
-package infrastructure.parse;
+package infrastructure.parse.domain;
 
 import domain.cookie.SeleniumCookie;
+import infrastructure.parse.service.CookieManager;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 

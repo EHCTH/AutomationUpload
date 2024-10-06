@@ -1,10 +1,11 @@
-package infrastructure.parse;
+package infrastructure.parse.service;
 
 import application.dto.ProblemInfoDto;
 import application.service.profile.ProfileManage;
 import domain.algorithm.problem.Problem;
 import domain.algorithm.problem.ProblemFile;
 import domain.cookie.SeleniumCookie;
+import infrastructure.parse.domain.Parse;
 import infrastructure.selenium.css.BySelector;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;

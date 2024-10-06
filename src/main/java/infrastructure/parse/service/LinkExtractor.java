@@ -1,8 +1,10 @@
-package infrastructure.parse;
+package infrastructure.parse.service;
 
 import application.dto.PageElements;
 import application.service.extract.ExtractPageElementsFactory;
 import domain.cookie.SeleniumCookie;
+import infrastructure.parse.domain.PageLinks;
+import infrastructure.parse.domain.Parse;
 import infrastructure.selenium.Driver.DriverController;
 import infrastructure.selenium.Driver.WaitDriverController;
 import infrastructure.selenium.css.BySelector;

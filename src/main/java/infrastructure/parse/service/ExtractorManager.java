@@ -1,4 +1,4 @@
-package infrastructure.parse;
+package infrastructure.parse.service;
 
 import application.dto.ProblemInfoDto;
 import application.service.profile.ProfileManage;

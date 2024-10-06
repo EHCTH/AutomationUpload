@@ -3,28 +3,30 @@ package application.service;
 import application.dto.ProblemInfoDto;
 import application.service.login.LoginServiceManage;
 import application.service.profile.ProfileManage;
+import domain.algorithm.problem.ProblemFile;
 import domain.cookie.SeleniumCookie;
-import infrastructure.github.UploadManage;
-import infrastructure.parse.*;
+import infrastructure.github.controller.UploadManage;
+import infrastructure.parse.service.ExtractorManager;
+import infrastructure.parse.service.ProblemLinkExtractionManage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.List;
 
-public class ServiceTask implements TaskManger {
-    private final Logger logger = LoggerFactory.getLogger(ServiceTask.class);
+public class ServiceController implements TaskManger {
+    private final Logger logger = LoggerFactory.getLogger(ServiceController.class);
     private final LoginServiceManage loginService;
     private final ProfileManage profileService;
     private final ExtractorManager problemExtractor;
     private final ProblemLinkExtractionManage linkExtractor;
     private final UploadManage githubUpload;
 
-    public ServiceTask(LoginServiceManage loginService,
-                       ProfileManage profileService,
-                       ExtractorManager problemExtractor,
-                       ProblemLinkExtractionManage linkExtractor,
-                       UploadManage githubUpload
+    public ServiceController(LoginServiceManage loginService,
+                             ProfileManage profileService,
+                             ExtractorManager problemExtractor,
+                             ProblemLinkExtractionManage linkExtractor,
+                             UploadManage githubUpload
     ) {
         this.loginService = loginService;
         this.profileService = profileService;
@@ -45,13 +47,13 @@ public class ServiceTask implements TaskManger {
             ProblemInfoDto problemInfoDto = problemExtractor.extractProblemInfoDto(cookies,
                     profileService,
                     problemInfo);
-            githubUpload.uploadFile(problemInfoDto.getProblemInfo());
+            List<ProblemFile> problemFiles = problemInfoDto.getProblemInfo();
+            githubUpload.uploadFile(problemFiles);
         } catch (InterruptedException e) {
             logger.error("Interrupted during login process", e);
         } catch (IOException e) {
             logger.error("Error extracting problem information", e);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             logger.error("Unexpected Exception");
         }
         finally {

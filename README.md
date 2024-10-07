@@ -90,3 +90,11 @@
 - [ ] Use Parallel Processing
 - [ ] logging 
 - [ ] OutputView
+
+
+# 아이디어
+1. 병렬 셀레니움을 이용하여 내제출에서 맞았습니다 링크랑 알고리즘 태그 추출
+   1. LinkAndAlgorithmTag class 를 만든후 넣는다
+2. 그 추출된 Link 를 사용하여 별렬 jsoup을 이용하여 소스코드,언어,문제번호 추출
+3. 추출하고 바로 Problme class 에 넣고 나중에 ProblemInfoDto 를사용하여 넣어준다
+4. DTO를 사용하여 병렬화 깃헙 등록

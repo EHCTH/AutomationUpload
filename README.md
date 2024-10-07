@@ -84,8 +84,9 @@
 - [x] LoginUrl
 - [x] Using Selenium For Login
 - [x] Extract For Jsoup
-- [ ] OutputView
 - [x] Problem Service Logic For ProblemDTO Input
 - [x] Dto use push for github
-- [ ] Github upload refactor
-- [ ] logging
+- [x] Github upload refactor
+- [ ] Use Parallel Processing
+- [ ] logging 
+- [ ] OutputView

@@ -1,4 +1,4 @@
-package infrastructure.github;
+package infrastructure.github.controller;
 
 import domain.algorithm.problem.ProblemFile;
 

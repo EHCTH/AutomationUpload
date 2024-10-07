@@ -1,4 +1,4 @@
-package application.service;
+package application.service.controller;
 
 import application.dto.ProblemInfoDto;
 import application.service.login.LoginServiceManage;
@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.List;
 
-public class ServiceController implements TaskManger {
+public class ServiceController implements ControllerManager {
     private final Logger logger = LoggerFactory.getLogger(ServiceController.class);
     private final LoginServiceManage loginService;
     private final ProfileManage profileService;

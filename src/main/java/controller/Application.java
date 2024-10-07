@@ -1,12 +1,12 @@
 package controller;
 
-import application.service.ServiceTaskFactory;
-import application.service.TaskManger;
+import application.service.controller.ServiceControllerFactory;
+import application.service.controller.ControllerManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Application {
     public static void main(String[] args) {
-        TaskManger service = ServiceTaskFactory.createServiceTask(new ChromeDriver());
+        ControllerManager service = ServiceControllerFactory.createServiceTask(new ChromeDriver());
         service.start();
     }
 }

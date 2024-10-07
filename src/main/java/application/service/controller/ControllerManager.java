@@ -1,7 +1,7 @@
 package application.service.controller;
 
 
-public interface ControllerManger {
+public interface ControllerManager {
     void start();
     void quit();
 }

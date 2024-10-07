@@ -1,6 +1,8 @@
 package infrastructure.parse;
 
 import domain.cookie.SeleniumCookie;
+import infrastructure.parse.domain.Parse;
+import infrastructure.parse.service.LinkExtractor;
 import infrastructure.selenium.Driver.DriverController;
 import infrastructure.selenium.Driver.WaitDriverController;
 import infrastructure.selenium.css.BySelector;

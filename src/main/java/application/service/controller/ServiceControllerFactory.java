@@ -1,5 +1,6 @@
-package application.service;
+package application.service.controller;
 
+import application.service.UserService;
 import application.service.login.LoginService;
 import application.service.login.LoginServiceManage;
 import application.service.profile.ProfileService;
@@ -22,7 +23,7 @@ import org.openqa.selenium.WebDriver;
 import java.time.Duration;
 
 public class ServiceControllerFactory {
-    public static TaskManger createServiceTask(WebDriver webDriver) {
+    public static ControllerManager createServiceTask(WebDriver webDriver) {
         DriverSetting driverSetting = new DriverSetting(webDriver);
         DriverController driver = driverSetting.getDriver();
         WaitDriverController waitDriver = new WaitDriver(driver.getWebDriver(), Duration.ofSeconds(10));

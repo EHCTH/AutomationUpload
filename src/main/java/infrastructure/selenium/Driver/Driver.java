@@ -66,6 +66,13 @@ public class Driver implements DriverController {
     public void clickButton(By by) {
         driver.findElement(by).click();
     }
+    public Driver addDriver(Set<Cookie> cookies, String url) {
+        driver.get(url);
+        for (Cookie cookie : cookies) {
+            driver.manage().addCookie(cookie);
+        }
+        return this;
+    }
     public boolean isAnswer(String text) {
         return text.contains("맞았습니다") || text.contains("100");
     }

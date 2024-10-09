@@ -11,6 +11,7 @@ public class DriverSetting {
         this.driver = driver;
     }
     public Driver getDriver() {
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         return new Driver(driver);
     }
 }

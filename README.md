@@ -92,7 +92,6 @@
 - [ ] OutputView
 
 
-
 # 아이디어
 1. 병렬 셀레니움을 이용하여 내제출에서 맞았습니다 링크랑 알고리즘 태그 추출
    1. LinkAndAlgorithmTag class 를 만든후 넣는다

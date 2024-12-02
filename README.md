@@ -87,8 +87,8 @@
 - [x] Problem Service Logic For ProblemDTO Input
 - [x] Dto use push for github
 - [x] Github upload refactor
-- [ ] Use Parallel Processing
-- [ ] logging 
+- [x] Use Parallel Processing
+- [x] logging 
 - [ ] OutputView
 
 
